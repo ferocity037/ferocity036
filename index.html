@@ -1,71 +1,365 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>ferocity036</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            background: #000;
-        }
-        canvas {
-            display: block;
-        }
-        .fullscreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            overflow: auto;
-            background-color: #000;
-            }
-    </style>
-</head>
-<body>
-    <div class="fullscreen">
-        <canvas id="matrixCanvas"></canvas>
-    <script>
-        var canvas = document.getElementById("matrixCanvas");
-        var ctx = canvas.getContext("2d");
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        letters = letters.split("");
-
-        var fontSize = 20; // Increase font size for better visibility
-        var columns = canvas.width / fontSize;
-
-        var drops = [];
-        for (var i = 0; i < columns; i++) {
-            drops[i] = 1;
-        }
-
-        function drawMatrix() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = "#0F0"; // Green color
-            ctx.font = fontSize + "px monospace";
-
-            for (var i = 0; i < drops.length; i++) {
-                var text = letters[Math.floor(Math.random() * letters.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-
-                drops[i]++;
-            }
-        }
-
-        setInterval(drawMatrix, 39); // Update every 33 milliseconds
-    </script>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>FEROCITY</title>
+  <link rel="icon" href="C:\Users\Matin\Desktop\Programming\programes\HTML\ferocity - Copy\fy_logo.jpg">
+  <style>
+  *{
+text-align:center;
+}
+.loader-container {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:#202761;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.8s ease-out;
+}
+.loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #00ffffaf;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+body
+{
+  margin: auto;
+  padding: 0;
+  color-interpolation-filters: linearRGB;
+  font-family: sans-serif;
+}
+.cd{
+text-align: center;
+align-items: center;
+background:#0077ff28;
+border:solid 1px #000000b7;
+box-Shadow:3px 3px 100px #00000081;
+}
+section
+{
+background: #202761; ;
+}
+section h2
+{
+text-align: center;
+font-size: 1.1em;
+color: #fff;
+}
+section p
+{
+text-align: center;
+font-size: 1.1em;
+color: #fff;
+}
+::-webkit-scrollbar{
+    width: 0;
+}
+#scrollpath{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    background:rgba(255, 255, 255, 0.05);
+}
+#progressbar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 10px;
+    background: linear-gradient(to top,#008aff,#00ffe7);
+    animation: animate2 5s linear infinite;
+}
+@keyframes animate2 {
+    0%,100%{
+        filter: hue-rotate(0deg);
+    }
+    50%{
+        filter: hue-rotate(360deg);
+    }
+}
+.wave{
+  position: relative;
+  -webkit-box-reflect: below  liner-gradient(transparent, rgba(255,251,251,0,0.363));
+  text-align: center;
+}
+.wave span{
+  color: #fff;
+  text-shadow: 3px 3px 5px #00ffffaf;
+  position: relative;
+  display: inline-block;
+  font-size: 54px;
+  text-transform: uppercase;
+  animation: waviy 2s infinite;
+  animation-delay: calc(.2s * var(--i));
+}
+@keyframes waviy {
+  0%,
+  40%,
+  100%{
+      transform: translateY(0);
+  }
+  20%{
+      transform: translateY(-20px);
+  }   
+}
+#progressbar::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top,#008aff,#00ffe7);
+    filter: blur(10px);
+}
+#progressbar::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top,#008aff,#00ffe7);
+    filter: blur(30px);
+}
+.container{border: solid 1px #000;width: 900px;box-shadow: 3px 3px 100px #000000;height: 100%;border-radius: 15px;text-align:center;margin: auto;padding-top: 100px;background:#ffffff2c ;}
+.img{width: 200px;height: 200px; border-radius: 15px;}
+.h1{font-family: sans-serif;color: #ffffff;text-shadow: 3px 3px 5px #ffffff}
+.h2{font-family: "Vazir";color: #ffffff;text-shadow: 3px 3px 5px #00ffffaf;font-size: x-large;}
+.b{font-family: "Vazir";color: #ffffff;text-shadow: 3px 3px 5px #00ffffaf;font-size: xx-large;}
+.fa{font-family:"Vazir";font-size: x-large;color: #ffffff;text-shadow: 3px 3px 5px #00ffffaf;}
+.en{font-family: sans-serif;font-size: 25px;color: #ffffff;text-shadow: 3px 3px 5px #00ffffaf;}
+#ferocity{margin-left: 600px;}
+#ferocity_2{margin-left: 30px;}
+h1
+{
+  margin-left:auto;
+  padding: 0;
+  color: rgb(255, 255, 255);
+  font-size: 5em;
+  text-align: center;
+  align-items: center;
+}
+h1 span
+{
+  display: table-cell;
+  margin: 0;
+  padding: 0;
+  animation: animate 8s linear infinite;
+}
+h1 span:nth-child(1)
+{
+  animation-delay: 0s;
+}
+h1 span:nth-child(2)
+{
+  animation-delay: 0.25s;
+}
+h1 span:nth-child(3)
+{
+  animation-delay: 0.5s;
+}
+h1 span:nth-child(4)
+{
+  animation-delay: 0.75s;
+}
+h1 span:nth-child(5)
+{
+  animation-delay: 1s;
+}
+h1 span:nth-child(6)
+{
+  animation-delay: 1.25s;
+}
+h1 span:nth-child(7)
+{
+  animation-delay: 1.5s;
+}
+h1 span:nth-child(8)
+{
+  animation-delay: 1.75s;
+}
+h1 span:nth-child(9)
+{
+  animation-delay: 1.5s;
+}
+h1 span:nth-child(10)
+{
+  animation-delay: 1.75s;
+}
+h1 span:nth-child(11)
+{
+  animation-delay: 1.75s;
+}
+h1 span:nth-child(12)
+{
+  animation-delay: 1.75s;
+}
+h1 span:nth-child(13)
+{
+  animation-delay: 1.75s;
+}
+h1 span:nth-child(14)
+{
+  animation-delay: 1.75s;
+}
+h1 span:nth-child(15)
+{
+  animation-delay: 1.75s;
+}
+@keyframes animate
+{
+  0%,100%
+  {
+    color: #ffffff;
+    text-shadow: 0 0 10px #00ffffaf,
+                 0 0 20px #00ffffaf,
+                 0 0 40px #00ffffaf,
+                 0 0 80px #00ffffaf,
+                 0 0 120px #00ffffaf,
+                 0 0 200px #00ffffaf,
+                 0 0 300px #00ffffaf,
+                 0 0 400px #00ffffaf;
+   }
+  5%,95%
+  {
+    color: #858585;
+    filter: blur(1px);
+    text-shadow: none;
+  }
+}
+  </style>
+  </head>
+<body onload="showLoader()">
+<div class="loader-container" id="loader">
+  <div class="loader"></div>
+</div>
+<script>
+function showLoader() {
+  var loader = document.getElementById('loader');
+  loader.style.display = 'flex';
+  setTimeout(function(){
+    loader.style.opacity = '0';
+    setTimeout(function(){
+      loader.style.display = 'none';
+    }, 800);
+  }, 7500); 
+}
+</script>
+<div id="progressbar"></div>
+    <div id="scrollpath"></div>
+    <section>
+	     <div class="cd">
+      <h1 id="ferocity">
+      <span>F</span>
+      <span>E</span>
+      <span>R</span>
+      <span>O</span>
+      <span>C</span>
+      <span>I</span>
+      <span>T</span>
+      <span>Y</span>
+      </h1>
+  </div>
+  <br>
+  <br>
+  <div id="not use">
+  <br>
+  </div>
+    <div class="container">
+      <img class="img" src="vscode.png" alt="vscode photo">
+      <p class="en">________________________________________________________________</p>
+      <div class="vsh1">
+	  <h1 id="ferocity-2">
+      <div class="wave">
+        <span style="--i:1">V</span>
+        <span style="--i:2">S</span>
+        <span style="--i:3">C</span>
+        <span style="--i:4">O</span>
+        <span style="--i:5">D</span>
+        <span style="--i:6">E</span>
+        <span style="--i:7">f</span>
+        <span style="--i:8">o</span>
+        <span style="--i:9">r</span>
+        <span style="--i:10">t</span>
+        <span style="--i:11">e</span>
+        <span style="--i:12">r</span>
+        <span style="--i:13">m</span>
+        <span style="--i:14">u</span>
+        <span style="--i:15">x</span>
     </div>
-</body>
+	  </div>
+      <p class="en">________________________________________________________________</p>
+      <h2 class="h2">اگر میخواهید که برنامه نویسی در گوشی خودتون کنید میتونید کد های زیر را مرتب داخل ترموکس وارد کنید و لذت ببرید</h2> 
+      <p class="en">termux-setup-storage</p>
+      <p class="en">pkg update &amp;&amp; pkg upgrade -y</p>
+      <p class="en">pkg install wget -y</p>
+      <p class="en">pkg install wget openssl-tool proot -y </p>
+      <p class="en">wget https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Ubuntu/ubuntu.sh 
+bash ubuntu.sh</p>
+      <p class="en">./start-ubuntu.sh</p>
+      <p class="en">
+      apt update &amp;&amp; apt upgrade -y
+      apt install wget -y</p>
+      <p class="en">wget https://github.com/coder/code-server/releases/download/v4.5.1/code-server-4.5.1-linux-arm64.tar.gz</p>
+      <p class="en">tar -xvf code-server-4.5.1-linux-arm64.tar.gz</p>
+      <p class="en">cd code-server-4.5.1-linux-arm64</p>
+	    <p class="en"> cd bin</p>
+      <p class="en">export PASSWORD="my-pass"</p>
+      <p class="en">./code-server</p>
+      <p class="en">________________________________________________________________</p>
+      <b class="b">نکته</b>
+      <p class="en">________________________________________________________________</p>
+      <p class="fa">وقتی که تمام کار ها را انجام دادید به موتور جستجو گر خود یا همان گوگل کروم بروید و آدرس زیر را وارد کنید کنید</p>
+      <p class="en">http://localhost:8080</p>
+      <p class="fa">وقتی که وارد میشوید از شما پسورد یا همان گذرواژه میخواهد که آن کد کد زیر است</p>
+      <p class="en">my-pass</p>
+      <p class="en">________________________________________________________________</p>
+      <b class="b">نکته</b>
+      <p class="en">________________________________________________________________</p>
+      <p class="fa">ضمناً برای هر بار که میخواهیم وارد برنامه میشوید باید این کد ها را وارد کنید</p>  
+      <p class="en">./start-ubuntu.sh
+      <p class="en">cd code-server-4.5.1-linux-arm64</p>
+      <p class="en">cd bin</p> 
+      <p class="en">./code-server</p> 
+      </p>
+    </div>
+	</section>
+    <div id="progressbar"></div>
+    <div id="scrollpath"></div>
+    <section>
+	</section>
+    <script>
+let progress = document.getElementById('progressbar');
+let totalHeight = document.body.scrollHeight - window.innerHeight;
+window.onscroll = function(){
+let progressHeight = (window.pageYOffset / totalHeight) * 108;
+progress.style.height = progressHeight + "%";
+}
+    </script> 
+    <script>
+      let docTitle = document.title;
+      window.addEventListener("blur", () =>{
+      document.title = "Please Come Back ☹";
+      window.addEventListener("focus",() =>{
+      document.title = docTitle;
+      })
+      })
+    </script>
+  </body>
 </html>
