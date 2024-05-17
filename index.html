@@ -3,32 +3,58 @@
 <head>
     <title>ferocity036</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
         body {
             background: #000;
-            color: #0F0; /* Green color for the matrix effect */
-            font-family: monospace;
-            font-size: 16px;
-            text-align: center;
         }
-        .matrix-effect {
-            position: relative;
-            display: inline-block;
-        }
-        .matrix-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            pointer-events: none;
+        canvas {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <p>Some regular text before the matrix effect.</p>
-    <div class="matrix-effect">
-        <canvas class="matrix-canvas" id="matrixCanvas"></canvas>
-        Matrix Effect Text
-    </div>
-    <p>Some regular text after the matrix effect.</p>
-
+    <canvas id="matrixCanvas"></canvas>
     <script>
         var canvas = document.getElementById("matrixCanvas");
+        var ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        letters = letters.split("");
+
+        var fontSize = 14; // Increase font size for better visibility
+        var columns = canvas.width / fontSize;
+
+        var drops = [];
+        for (var i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#0F0"; // Green color
+            ctx.font = fontSize + "px monospace";
+
+            for (var i = 0; i < drops.length; i++) {
+                var text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 33); // Update every 33 milliseconds
+    </script>
+</body>
+</html>
