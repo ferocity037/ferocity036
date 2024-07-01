@@ -1,3 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>FEROCITY</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../java/script2.js"></script>
+    <style>
+        p{color: #00ff00b6;}
+    </style>
+</head>
+<body onload="showLoader()">
+    <div class="loader-container" id="loader">
+    <div class="loader"><p>BY FEROCITY</p></div>
+    </div>
+    <canvas id="FEROCITY"></canvas>
+    <script>
 const canvas = document.getElementById('FEROCITY');
 const context = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -14,7 +32,7 @@ for( let x = 0; x < columns; x++ ) {
 const draw = () => {
 context.fillStyle = 'rgba(0, 0, 0, 0.05)';
 context.fillRect(0, 0, canvas.width, canvas.height);
-context.fillStyle = 'red';
+context.fillStyle = 'green';
 context.font = fontSize + 'px monospace';
 for(let i = 0; i < rainDrops.length; i++)
 {
@@ -27,3 +45,6 @@ rainDrops[i]++;
 }
 };
 setInterval(draw, 25);
+    </script>
+</body>
+</html>
